@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>你和家人的距離：家庭與代間關係小測驗</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap">
+<style>
+:root{--ink:#2B2420;--body:#4A3F37;--cream:#F7F2EA;--sand:#EDE3D3;--card:#FCF9F4;--accent:#A9472A;--teal:#2F6F6A;--line:#D9CBB5;--muted:#6E6155}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--cream);color:var(--ink);font-family:'Noto Sans TC',system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:24px 20px 64px}
+h1,h2{font-family:'Noto Serif TC',Georgia,serif;margin:0}
+h1{font-size:30px;line-height:1.3}
+h2{font-size:24px;line-height:1.35}
+h3{font-size:18px;margin:0}
+p{line-height:1.75;color:var(--body);margin:0}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--accent)}
+.card{background:var(--card);border-radius:16px;padding:22px;border:1px solid var(--line)}
+.stack{display:flex;flex-direction:column;gap:16px}
+.btn{appearance:none;border:0;border-radius:12px;padding:14px 22px;font:inherit;font-size:17px;font-weight:700;cursor:pointer;background:var(--accent);color:#FBF4EC}
+.btn.ghost{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+.btn.teal{background:var(--teal);color:#F4EEE4}
+.btn:focus-visible,.opt:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.parts{display:grid;grid-template-columns:1fr;gap:10px}
+.part{display:flex;gap:12px;align-items:flex-start;background:var(--sand);border-radius:12px;padding:14px}
+.part b{font-family:'Noto Serif TC',serif;font-size:22px;color:var(--accent);line-height:1}
+.progress{height:8px;background:var(--sand);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--teal);transition:width .25s}
+.qmeta{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.qtext{font-size:22px;line-height:1.6;font-weight:500;min-height:110px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:2px solid var(--line);background:var(--card);border-radius:12px;padding:14px 16px;font:inherit;font-size:17px;color:var(--ink);cursor:pointer}
+.opt .n{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--sand);font-weight:700;flex:none}
+.opt.sel{border-color:var(--teal);background:#E6F0EE}
+.opt.sel .n{background:var(--teal);color:#fff}
+.small{font-size:14px;color:var(--muted);line-height:1.6}
+.code{font-family:'Noto Serif TC',serif;font-size:26px;font-weight:900;text-align:center;padding:18px;border-radius:14px;background:var(--ink);color:var(--cream);line-height:1.5}
+.code span{display:block;font-family:'Noto Sans TC',sans-serif;font-size:13px;font-weight:500;letter-spacing:2px;color:#E0C9A8}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar{display:grid;grid-template-columns:96px 1fr 44px;gap:10px;align-items:center;font-size:15px}
+.bar .t{height:14px;background:var(--sand);border-radius:99px;overflow:hidden}
+.bar .t i{display:block;height:100%;border-radius:99px}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--sand);color:var(--ink)}
+.hl{border-left:5px solid var(--accent);padding-left:14px}
+.hl.t{border-color:var(--teal)}
+ul{margin:0;padding-left:22px;color:var(--body);line-height:1.75}
+.ref{font-size:13px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--line);padding-top:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.grid2{grid-template-columns:1fr}.qtext{font-size:20px}h1{font-size:26px}}
+.hide{display:none!important}
+nav.top{display:flex;justify-content:flex-end;gap:14px;font-size:14px;margin-bottom:8px}
+nav.top a{color:var(--muted)}
+.cnt{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center}
+.cnt input{width:84px;font:inherit;font-size:18px;padding:8px;border:2px solid var(--line);border-radius:10px;background:#fff;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="top"><a href="#">作答</a><a href="#class">報告者：全班統計與結果一覽</a></nav>
+
+<!-- 開始 -->
+<section id="v-start" class="stack">
+  <p class="eyebrow">人際關係課堂活動｜家庭與代間關係</p>
+  <h1>你和家人的距離</h1>
+  <p>四個部分、共 28 題，約 5 分鐘。依你真實的感受作答，沒有對錯。作答只在你的手機上計算，不會上傳或記錄任何資料。</p>
+  <div class="parts">
+    <div class="part"><b>1</b><div><h3>你是哪一種孝？（16 題）</h3><p class="small">採用葉光輝與 Bedford（2003）發表的雙元孝道量表題目</p></div></div>
+    <div class="part"><b>2</b><div><h3>你和家人的六條連結（6 題）</h3><p class="small">依據 Bengtson 的代間連帶模型</p></div></div>
+    <div class="part"><b>3</b><div><h3>愛與拉扯（3 題）</h3><p class="small">代間矛盾的直接測量題，譯自 Pillemer 等（2007）</p></div></div>
+    <div class="part"><b>4</b><div><h3>衝突中怎麼調節情緒（3 題）</h3><p class="small">何文澤等（2017）情緒調控策略量表的三題例題原文</p></div></div>
+  </div>
+  <p class="small">「家人」請想你最常互動的父母或主要照顧者。若你的家庭情況不同，就以你心中的「家人」作答。</p>
+  <div class="row"><button class="btn" id="go">開始作答</button></div>
+  <p class="small">第一、三、四部分的題目取自已發表的研究（第三、四部分只用其中幾題，不是完整量表）；第二部分為依理論自編的教學題目。本測驗僅供課堂教學與自我了解，結果不代表任何診斷。</p>
+</section>
+
+<!-- 題目 -->
+<section id="v-q" class="stack hide">
+  <div class="qmeta"><span id="q-part"></span><span id="q-num"></span></div>
+  <div class="progress"><i id="q-bar"></i></div>
+  <p class="eyebrow" id="q-section"></p>
+  <div class="qtext" id="q-text"></div>
+  <p class="small" id="q-hint"></p>
+  <div class="opts" id="q-opts"></div>
+  <div class="row" style="justify-content:space-between">
+    <button class="btn ghost" id="back">上一題</button>
+    <span class="small">點選後自動跳下一題</span>
+  </div>
+</section>
+
+<!-- 結果 -->
+<section id="v-r" class="stack hide"></section>
+
+<!-- 報告者頁 -->
+<section id="v-class" class="stack hide">
+  <p class="eyebrow">報告者用</p>
+  <h2>全班統計</h2>
+  <p>請同學作答完後，依結果頁最上方的「結果代碼」用 Slido 匿名投票，把票數填進下面，長條圖會即時更新，可投影給全班看。</p>
+  <div class="grid2">
+    <div class="card stack">
+      <h3>孝道類型</h3>
+      <div class="cnt" id="c-type"></div>
+      <div class="bars" id="b-type"></div>
+    </div>
+    <div class="card stack">
+      <h3>衝突中的情緒調控策略</h3>
+      <div class="cnt" id="c-strat"></div>
+      <div class="bars" id="b-strat"></div>
+    </div>
+  </div>
+  <div class="card stack">
+    <h3>帶領討論的提問</h3>
+    <ul>
+      <li>班上大多數人落在哪一型？這和「權威性孝道減弱、相互性孝道成為核心」的研究趨勢一致嗎？</li>
+      <li>「壓抑型」的人多嗎？（情緒調控策略，何文澤等，2017）為什麼在華人家庭裡，「忍一時」這麼常見？</li>
+      <li>六條連結中，你覺得大學生最常缺的是哪一條？</li>
+    </ul>
+  </div>
+  <h2 style="margin-top:12px">所有可能的結果一覽</h2>
+  <div id="all" class="stack"></div>
+</section>
+</div>
+
+<script>
+(function(){
+var SCALE=["非常不同意","不同意","普通","同意","非常同意"];
+var SCALE6=["極不重要","不重要","有點不重要","有點重要","重要","極重要"];
+var SCALE6F=["非常不符合","不符合","有點不符合","有點符合","符合","非常符合"];
+var Q=[
+ // 第一部分：雙元孝道量表 16 題（Yeh & Bedford, 2003；中文題目依李啟明等 2016 刊載版本，作答方式依原量表「重要程度」）
+ {p:1,k:"r",t:"多留心父母親的身體健康。"},
+ {p:1,k:"a",t:"當自己與父母親意見不合時，要順從父母親的意見。"},
+ {p:1,k:"r",t:"多與父母親交談，以瞭解他們的想法和感受。"},
+ {p:1,k:"a",t:"結婚前，要將所賺的錢全部交給父母親處理。"},
+ {p:1,k:"r",t:"多留心父母親的生活起居。"},
+ {p:1,k:"a",t:"為了順從父母親，可以不守對朋友的諾言。"},
+ {p:1,k:"r",t:"常關懷父母親，瞭解父母親。"},
+ {p:1,k:"a",t:"放棄個人的志向，達成父母親的心願。"},
+ {p:1,k:"r",t:"奉養父母親使他們的生活更為舒適。"},
+ {p:1,k:"a",t:"無論父母親交代什麼事，都立刻去做。"},
+ {p:1,k:"r",t:"對父母親的養育之恩心存感激。"},
+ {p:1,k:"a",t:"避免和父母親不喜歡的異性結婚。"},
+ {p:1,k:"r",t:"父母親去世，不管住得多遠，都要親自奔喪。"},
+ {p:1,k:"a",t:"為了傳宗接代，至少生一個兒子。"},
+ {p:1,k:"r",t:"父母親忙碌時，主動幫助他們。"},
+ {p:1,k:"a",t:"結婚後和父母（公婆）住在一起。"},
+
+ // 第二部分：代間連帶（自編教學題）
+ {p:2,k:"s0",t:"我和家人每週會聯絡或見面好幾次（電話、LINE、見面都算）。"},
+ {p:2,k:"s1",t:"我覺得家人理解我，我們彼此很親近。"},
+ {p:2,k:"s2",t:"在工作、感情、人生選擇等重要價值觀上，我和家人看法相近。"},
+ {p:2,k:"s3",t:"我和家人之間常互相幫忙（金錢、生活大小事、照顧）。"},
+ {p:2,k:"s4",t:"我認為成年子女本來就有責任照顧年老的父母。"},
+ {p:2,k:"s5",t:"我和家人住得近，想見面隨時都可以見到。"},
+ // 第三部分：代間矛盾直接測量（Pillemer et al., 2007 三題，中譯）
+ {p:3,k:"amb",t:"我對爸媽懷有複雜、矛盾的感受。"},
+ {p:3,k:"amb",t:"我和爸媽常讓彼此心煩，但仍然覺得很親近。"},
+ {p:3,k:"amb",t:"面對爸媽時，我覺得自己被往兩個方向拉扯。"},
+ // 第四部分：情緒調控策略例題（何文澤等，2017；轉引自吳志文、葉光輝、何文澤，2019）
+ {p:4,k:"rea",t:"我會改變對衝突事件的想法，讓自己的心情變得比較愉快。"},
+ {p:4,k:"sup",t:"我會隱忍生氣或傷心的情緒，不讓它顯露出來。"},
+ {p:4,k:"exp",t:"我會選擇適當的措辭與爸爸／媽媽分享自己的情緒。"}
+];
+var PART={1:"第一部分｜你是哪一種孝？",2:"第二部分｜你和家人的六條連結",3:"第三部分｜愛與拉扯",4:"第四部分｜衝突中怎麼調節情緒"};
+var DIMS=["互動","情感","共識","功能","規範","結構"];
+var DIMFULL=["互動連帶：多常聯絡見面","情感連帶：多親近","共識連帶：價值觀多一致","功能連帶：多常互相幫忙","規範連帶：家庭責任感","結構連帶：見面的機會"];
+var DIMTIP=[
+ "從固定的小聯絡開始，例如每週一通電話，或在家族群組分享一張生活照。Fingerman 等（2020）指出，手機讓兩代聯絡更頻繁，研究者稱為「數位連帶」。",
+ "試著分享一件生活小事，或請爸媽聊聊他們 20 歲時在煩惱什麼。情感連結常從「被聽見」開始。",
+ "價值觀不同很正常，尤其在社會快速變遷時。討論時先弄懂對方在意什麼，不一定要說服對方。",
+ "互相幫忙可以很小：幫爸媽設定手機、一起做一頓飯。功能連帶也包括你接受家人的支持。",
+ "你對「子女責任」的看法比較彈性，這和世代變遷的研究趨勢一致。可以和家人聊聊彼此對未來照顧的期待。",
+ "距離遠不代表關係淡。住得遠時，可以用固定的視訊或訊息維持其他幾條連結。"
+];
+var TYPES={
+ mutual:{name:"相互型",sub:"相互性高、權威性低",color:"#2F6F6A",
+  desc:"你和家人的連結建立在情感與感恩上：願意陪伴、關心、回報，但人生的重大決定希望自己做主。這是現代台灣大學生最常見的類型，也符合「權威性孝道減弱、相互性孝道成為核心」的研究趨勢。",
+  good:"研究整合發現，相互性孝道和較少的憂鬱、焦慮、攻擊等心理困擾有關，可視為一種保護因子（Han & Cheung, 2024）。",
+  watch:"越在乎越容易糾結：有台灣研究發現，相互性孝道信念較強的成年子女，代間矛盾也較明顯。把期待說出口，比默默扛下更好。"},
+ absolute:{name:"絕對型",sub:"相互性高、權威性高",color:"#A9472A",
+  desc:"你對家人情感深厚，同時重視角色義務與家族期待，最接近傳統的孝道理想。家庭對你來說是情感的依靠，也是責任的來源。",
+  good:"家庭凝聚力通常較強，你也重視讓家人安心、有面子。",
+  watch:"當自己的目標和父母期待衝突時，壓力可能特別大。可以練習區分「感謝父母」和「事事服從」：兩者不必綁在一起。"},
+ authority:{name:"權威型",sub:"相互性低、權威性高",color:"#8A5A2B",
+  desc:"你重視規矩、輩分與責任，覺得照顧和順從父母是「應該的」，但和家人之間的情感交流比較少。",
+  good:"你有清楚的家庭責任感，關鍵時刻通常靠得住。",
+  watch:"只有義務、缺少情感時，責任可能變成壓力。試著多分享生活小事，讓關係不只剩下「應該」。研究發現，親子間的溫暖與關愛，比控制更能帶來好的親子關係（李偉斌、簡晉龍，2012）。"},
+ low:{name:"低連結型",sub:"相互性低、權威性低（研究中稱「非孝型」）",color:"#6E6155",
+  desc:"兩種孝道的分數都偏低。可能是你正處在追求獨立的階段、和家人互動較少，或家中有難以言說的狀況。這不代表你不愛家人，家庭關係本來就有很多樣子。",
+  good:"你可能更習慣靠自己，或從朋友與其他重要他人身上得到支持。",
+  watch:"照顧好自己最重要。如果家庭議題讓你感到困擾，可以找信任的人聊聊，學校諮商中心也是可以利用的資源。"}
+};
+var STRAT={
+ sup:{name:"壓抑型",color:"#A9472A",desc:"你習慣把話吞下去，維持表面的和諧。",
+  research:"何文澤等（2017）以 761 名台灣高中生為對象，發現壓抑對身心適應與親子關係滿意度的效果，都明顯不如適當表達。葉光輝也指出，華人遇到衝突常想「忍一時」，但往往治標不治本。",
+  tip:"挑一件小事練習表達，例如「我知道你是擔心我，但我想自己試試看」。"},
+ rea:{name:"重新評估型",color:"#C08A2E",desc:"你擅長轉念，體諒父母的出發點，讓自己的情緒平復下來。",
+  research:"何文澤等（2017）發現，重新評估對身心適應的幫助和適當表達相當；但對親子關係滿意度的正向效果，不如適當表達。",
+  tip:"轉念之後，再找時機把你的需要說出來，把兩種策略搭配起來。"},
+ exp:{name:"適當表達型",color:"#2F6F6A",desc:"你會挑時機、用平和的方式，讓家人知道你的感受，並一起找解法。",
+  research:"何文澤等（2017）以 761 名台灣高中生為對象，發現「適當表達」用得越頻繁，身心適應越好，對親子關係滿意度的正向效果也優於重新評估與壓抑。適當表達是先暫時抑制情緒、沉澱反思，再找適當時機和父母分享。",
+  tip:"繼續保持！也記得多聽聽父母在意的是什麼，表達是雙向的。"}
+};
+var ans=new Array(Q.length).fill(0), cur=0;
+var $=function(id){return document.getElementById(id)};
+function show(v){["v-start","v-q","v-r","v-class"].forEach(function(id){$(id).classList.toggle("hide",id!==v)});window.scrollTo(0,0)}
+function renderQ(){
+ var q=Q[cur];
+ $("q-part").textContent=PART[q.p].split("｜")[0];
+ $("q-num").textContent=(cur+1)+" / "+Q.length;
+ $("q-bar").style.width=((cur)/Q.length*100)+"%";
+ $("q-section").textContent=PART[q.p].split("｜")[1];
+ $("q-text").textContent=q.t;
+ $("q-hint").textContent=q.p===1?"這項做法對你來說有多重要？（1＝極不重要，6＝極重要）":q.p===4?"回想最近一次和爸媽起衝突：這句話和你的做法有多符合？（1＝非常不符合，6＝非常符合）":"請依你同意的程度作答";
+ var o=$("q-opts");o.innerHTML="";
+ (q.p===1?SCALE6:q.p===4?SCALE6F:SCALE).forEach(function(s,i){
+  var b=document.createElement("button");b.className="opt"+(ans[cur]===i+1?" sel":"");b.type="button";
+  b.innerHTML='<span class="n">'+(i+1)+'</span><span>'+s+'</span>';
+  b.onclick=function(){ans[cur]=i+1;Array.prototype.forEach.call(o.children,function(c){c.classList.remove("sel")});b.classList.add("sel");
+   setTimeout(function(){if(cur<Q.length-1){cur++;renderQ();}else{results();}},180)};
+  o.appendChild(b)});
+ $("back").style.visibility=cur===0?"hidden":"visible";
+}
+$("go").onclick=function(){cur=0;show("v-q");renderQ()};
+$("back").onclick=function(){if(cur>0){cur--;renderQ()}};
+
+function sum(k){var s=0;Q.forEach(function(q,i){if(q.k===k)s+=ans[i]});return s}
+function typeOf(A,B){return A>=3.5?(B>=3.5?"absolute":"mutual"):(B>=3.5?"authority":"low")}
+function radar(vals){
+ var cx=150,cy=150,R=110,n=6,pts=[],grid="",axes="",labels="";
+ for(var lv=1;lv<=5;lv++){var g=[];for(var i=0;i<n;i++){var a=-Math.PI/2+i*2*Math.PI/n;g.push((cx+R*lv/5*Math.cos(a)).toFixed(1)+","+(cy+R*lv/5*Math.sin(a)).toFixed(1))}grid+='<polygon points="'+g.join(" ")+'" fill="none" stroke="#D9CBB5"/>'}
+ for(var i=0;i<n;i++){var a=-Math.PI/2+i*2*Math.PI/n;axes+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+R*Math.cos(a)).toFixed(1)+'" y2="'+(cy+R*Math.sin(a)).toFixed(1)+'" stroke="#D9CBB5"/>';
+  pts.push((cx+R*vals[i]/5*Math.cos(a)).toFixed(1)+","+(cy+R*vals[i]/5*Math.sin(a)).toFixed(1));
+  var lx=cx+(R+24)*Math.cos(a),ly=cy+(R+24)*Math.sin(a);
+  labels+='<text x="'+lx.toFixed(1)+'" y="'+(ly+5).toFixed(1)+'" text-anchor="middle" font-size="14" fill="#2B2420" font-weight="700">'+DIMS[i]+' '+vals[i]+'</text>'}
+ return '<svg viewBox="0 0 300 300" width="100%" style="max-width:340px;display:block;margin:0 auto" role="img" aria-label="代間連帶六面向雷達圖：'+DIMS.map(function(d,i){return d+vals[i]+"分"}).join("、")+'">'+grid+axes+'<polygon points="'+pts.join(" ")+'" fill="rgba(47,111,106,.25)" stroke="#2F6F6A" stroke-width="2.5"/>'+labels+'</svg>';
+}
+function bar(label,v,max,color){return '<div class="bar"><span>'+label+'</span><span class="t"><i style="width:'+(v/max*100)+'%;background:'+color+'"></i></span><b>'+v+'</b></div>'}
+function results(){
+ var A=Math.round(sum("r")/8*10)/10,B=Math.round(sum("a")/8*10)/10,t=typeOf(A,B),T=TYPES[t];
+ var sol=[0,1,2,3,4,5].map(function(i){return sum("s"+i)});
+ var mx=Math.max.apply(null,sol),mn=Math.min.apply(null,sol);
+ var strong=sol.map(function(v,i){return v===mx?i:-1}).filter(function(i){return i>=0});
+ var weak=sol.map(function(v,i){return v===mn?i:-1}).filter(function(i){return i>=0});
+ var amb=sum("amb"),ambLv=amb<=7?"低":amb<=11?"中":"高";
+ var ss={sup:sum("sup"),rea:sum("rea"),exp:sum("exp")};
+ var top=Math.max(ss.sup,ss.rea,ss.exp);
+ var tops=["exp","rea","sup"].filter(function(k){return ss[k]===top});
+ var S=STRAT[tops[0]];
+ var stratName=tops.map(function(k){return STRAT[k].name}).join("＋");
+ var ambText={
+  "低":"你和家人的關係目前比較單純，正面或負面的感受沒有明顯互相拉扯。",
+  "中":"愛與煩同時存在，是大多數親子關係的常態。Luescher 與 Pillemer（1998）提出「代間矛盾」，指出這不是誰做錯，而是要獨立又要孝順、要自主又要依賴等角色期待本身就互相衝突。",
+  "高":"你正經歷明顯的拉扯，這其實很普遍。研究發現，親子雙方的矛盾感越高，心理福祉可能越受影響（Fingerman 等，2008）。找信任的朋友聊聊，或使用學校諮商中心的資源，都是照顧自己的方式。"}[ambLv];
+ var h='';
+ h+='<p class="eyebrow">你的結果</p><h1>'+T.name+'｜'+stratName+'</h1>';
+ h+='<div class="code"><span>結果代碼（報告時依此匿名投票）</span>'+T.name+'　・　'+stratName+'</div>';
+ // part 1
+ h+='<div class="card stack"><p class="eyebrow">第一部分｜雙元孝道</p><h2>你是「'+T.name+'」</h2><p class="small">'+T.sub+'</p>';
+ h+='<div class="bars">'+bar("相互性孝道",A,6,"#2F6F6A")+bar("權威性孝道",B,6,"#A9472A")+'</div><p class="small"><b>切截分數</b>：兩者都是 8 題的平均分數（1＝極不重要，6＝極重要）；平均 3.5 分以上算「高」，未滿 3.5 算「低」。3.5 是 1–6 量尺的中點，代表整體偏向「重要」。這是為了即時給個人回饋而採用的理論切點，不是常模；正式研究多依樣本的分數分布（例如中位數）切分，所以同一個分數在不同研究中可能被歸為不同類型。</p>';
+ h+='<p>'+T.desc+'</p><p class="hl t"><b>你的優勢：</b>'+T.good+'</p><p class="hl"><b>可以留意：</b>'+T.watch+'</p>';
+ h+='<p class="ref">作答方式依原量表，評定每項做法「對自己有多重要」，測的是孝道信念。量表來源：Yeh, K.-H., & Bedford, O. (2003). A test of the Dual Filial Piety Model. <i>Asian Journal of Social Psychology, 6</i>, 215–228；中文題目依中研院學術調查研究資料庫公開的問卷版本。理論：葉光輝的雙元孝道模型。相互性孝道源自感念父母的付出與真實的情感連結；權威性孝道源自角色階層與對父母的順從。Bedford 與 Yeh（2021）指出，這是親子關係中普遍的兩種心理動機，不只存在於華人社會。</p></div>';
+ // part 2
+ h+='<div class="card stack"><p class="eyebrow">第二部分｜代間連帶</p><h2>你和家人的六條連結</h2>'+radar(sol);
+ h+='<p class="hl t"><b>最強的連結：</b>'+strong.map(function(i){return DIMFULL[i]}).join("、")+'</p>';
+ if(mx===mn){h+='<p>六條連結的分數都一樣，你的家庭連結很平均。</p>'}
+ else{h+='<p class="hl"><b>最弱的連結：</b>'+weak.map(function(i){return DIMFULL[i]}).join("、")+'</p><p>'+DIMTIP[weak[0]]+'</p>'}
+ h+='<p class="small">每條連結各 1–5 分。各面向不一致很常見，例如功能連帶強（家裡出學費）、共識連帶弱（價值觀差很多），而這種落差正是代間矛盾的來源之一。</p>';
+ h+='<p class="ref">理論來源：Bengtson 與 Roberts（1991）的代間連帶模型，把親子關係分成互動、情感、共識、功能、規範、結構六個面向。</p></div>';
+ // part 3
+ h+='<div class="card stack"><p class="eyebrow">第三、四部分｜代間矛盾與情緒調控</p><h2>愛與拉扯：'+ambLv+'</h2>';
+ h+='<div class="bars">'+bar("矛盾程度",amb,15,"#8A5A2B")+'</div><p>'+ambText+'</p>';
+ h+='<h2 style="margin-top:8px">你在衝突中調節情緒的方式：'+stratName+'</h2>';
+ h+='<div class="bars">'+bar("壓抑",ss.sup,6,STRAT.sup.color)+bar("重新評估",ss.rea,6,STRAT.rea.color)+bar("適當表達",ss.exp,6,STRAT.exp.color)+'</div>';
+ tops.forEach(function(k){var s=STRAT[k];h+='<p class="hl'+(k==="exp"?" t":"")+'"><b>'+s.name+'：</b>'+s.desc+'</p><p>'+s.research+'</p><p><b>小建議：</b>'+s.tip+'</p>'});
+ h+='<p class="ref">題目來源：第三部分譯自 Pillemer, K., Suitor, J. J., Mock, S. E., Sabir, M., Pardo, T. B., & Sechrist, J. (2007). Capturing the complexity of intergenerational relations. <i>Journal of Social Issues, 63</i>(4), 775–791 的直接矛盾題（「複雜的感受」「讓彼此心煩但仍親近」「被往兩個方向拉扯」）。第四部分是何文澤、葉光輝、呂婕、Sundararajan（2017）〈適當表達：親子衝突中的情緒精鍊〉（本土心理學研究，48，57–119）三個分量表的例題原文（轉引自吳志文、葉光輝、何文澤，2019，人類發展與家庭學報，20，24–63）；完整量表為重新評估 6 題、壓抑 4 題、適當表達 4 題，作答方式為 1 非常不符合至 6 非常符合。注意：「壓抑、重新評估、適當表達」是情緒調控策略，研究對象為高中生；和 Wu & Yeh（2021）的五種衝突解決策略（兩全、妥協、自我犧牲、自我堅持、逃避）是不同的概念。</p></div>';
+ h+='<div class="card stack"><h3>提醒</h3><p class="small">第一部分採用已發表的雙元孝道量表全部 16 題與原作答方式；第三、四部分各只用原研究的 3 題，不是完整量表，分數只能粗略參考；第二部分是依 Bengtson 理論自編的教學題目，沒有經過信效度驗證。結果只是幫你認識自己的一個角度。家庭的樣子有很多種，沒有哪一型比較好。若家庭議題讓你感到困擾，可以聯絡學校的諮商中心。</p></div>';
+ h+='<div class="row"><button class="btn ghost" id="again">重新作答</button></div>';
+ $("v-r").innerHTML=h;show("v-r");
+ $("again").onclick=function(){ans=new Array(Q.length).fill(0);cur=0;show("v-start")};
+}
+// 報告者頁
+var TK=["mutual","absolute","authority","low"],SK=["sup","rea","exp"];
+var cnt={};
+function counters(){
+ var ct=$("c-type"),cs=$("c-strat");ct.innerHTML="";cs.innerHTML="";
+ TK.forEach(function(k){ct.insertAdjacentHTML("beforeend",'<label for="n-'+k+'">'+TYPES[k].name+'</label><input id="n-'+k+'" type="number" min="0" inputmode="numeric" value="0">')});
+ SK.forEach(function(k){cs.insertAdjacentHTML("beforeend",'<label for="n-'+k+'">'+STRAT[k].name+'</label><input id="n-'+k+'" type="number" min="0" inputmode="numeric" value="0">')});
+ TK.concat(SK).forEach(function(k){$("n-"+k).addEventListener("input",draw)});
+ draw();
+}
+function draw(){
+ function v(k){var x=parseInt($("n-"+k).value,10);return isNaN(x)||x<0?0:x}
+ var tm=Math.max(1,Math.max.apply(null,TK.map(v))),sm=Math.max(1,Math.max.apply(null,SK.map(v)));
+ $("b-type").innerHTML=TK.map(function(k){return bar(TYPES[k].name,v(k),tm,TYPES[k].color)}).join("");
+ $("b-strat").innerHTML=SK.map(function(k){return bar(STRAT[k].name,v(k),sm,STRAT[k].color)}).join("");
+}
+function allResults(){
+ var h='<p class="small">孝道類型的切截分數：相互性、權威性兩個平均分數（1–6 分）各以量尺中點 3.5 分為界，3.5 以上為高（共 4 種）；這是理論切點而非常模。情緒調控策略取三種策略中最高分者，同分時會同時顯示（共 3 種單一策略，或其組合）。</p>';
+ TK.forEach(function(k){var T=TYPES[k];h+='<div class="card stack"><p><span class="tag" style="background:'+T.color+';color:#fff">孝道類型</span></p><h3>'+T.name+'（'+T.sub+'）</h3><p>'+T.desc+'</p><p class="small"><b>優勢：</b>'+T.good+'</p><p class="small"><b>留意：</b>'+T.watch+'</p></div>'});
+ SK.forEach(function(k){var S=STRAT[k];h+='<div class="card stack"><p><span class="tag" style="background:'+S.color+';color:#fff">衝突策略</span></p><h3>'+S.name+'</h3><p>'+S.desc+'</p><p class="small">'+S.research+'</p></div>'});
+ h+='<div class="card stack"><p><span class="tag">代間矛盾程度</span></p><h3>低（3–7 分）／中（8–11 分）／高（12–15 分）</h3><p class="small">中等程度最常見，代表愛與煩並存；高分者在結果頁會看到自我照顧與諮商資源的提醒。</p></div>';
+ h+='<div class="card stack"><p><span class="tag">代間連帶</span></p><h3>六面向雷達圖</h3><p class="small">顯示最強與最弱的連結，並依最弱的面向給一個具體建議：'+DIMS.join("、")+'。</p></div>';
+ $("all").innerHTML=h;
+}
+counters();allResults();
+function route(){if(location.hash==="#class"){show("v-class")}else if(!$("v-class").classList.contains("hide")){show("v-start")}}
+window.addEventListener("hashchange",route);route();
+})();
+</script>
+</body>
+</html>
