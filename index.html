@@ -9,6 +9,7 @@
 :root{--ink:#2B2420;--body:#4A3F37;--cream:#F7F2EA;--sand:#EDE3D3;--card:#FCF9F4;--accent:#A9472A;--teal:#2F6F6A;--line:#D9CBB5;--muted:#6E6155}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--cream);color:var(--ink);font-family:'Noto Sans TC',system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.gopt{appearance:none;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:14px 16px;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px}.gopt b{font-size:17px;color:var(--accent)}.gopt span{font-size:14px}.gopt:active{background:var(--accent);color:#FBF4EC}.live-n{font-size:15px;color:var(--accent);font-weight:700}
 .wrap{max-width:720px;margin:0 auto;padding:24px 20px 64px}
 h1,h2{font-family:'Noto Serif TC',Georgia,serif;margin:0}
 h1{font-size:30px;line-height:1.3}
@@ -64,7 +65,8 @@ nav.top a{color:var(--muted)}
 <section id="v-start" class="stack">
   <p class="eyebrow">人際關係課堂活動｜家庭與代間關係</p>
   <h1>你和家人的距離</h1>
-  <p>四個部分、共 28 題，約 5 分鐘。依你真實的感受作答，沒有對錯。作答只在你的手機上計算，不會上傳或記錄任何資料。</p>
+  <p>四個部分、共 28 題，約 5 分鐘。依你真實的感受作答，沒有對錯。</p>
+  <p class="small">🔒 你的每一題作答只在手機上計算，不會上傳。做完後會請你猜一題，再<b>匿名</b>送出「孝道類型、情緒調控策略、矛盾程度」三個結果和你的猜測，用來統計全班分布，不含任何個人資料。</p>
   <div class="parts">
     <div class="part"><b>1</b><div><h3>你是哪一種孝？（16 題）</h3><p class="small">採用葉光輝與 Bedford（2003）發表的雙元孝道量表題目</p></div></div>
     <div class="part"><b>2</b><div><h3>你和家人的六條連結（6 題）</h3><p class="small">依據 Bengtson 的代間連帶模型</p></div></div>
@@ -91,13 +93,29 @@ nav.top a{color:var(--muted)}
 </section>
 
 <!-- 結果 -->
+<section id="v-g" class="stack hide">
+  <p class="eyebrow">作答完成！看結果之前，最後一題</p>
+  <h2>你猜，我們班最多的是哪一型？</h2>
+  <p class="small">不是問你自己，是猜全班。選完就會看到你的結果。</p>
+  <div class="stack" id="guess"></div>
+  <button class="btn ghost" id="g-skip" type="button">略過，直接看結果</button>
+</section>
 <section id="v-r" class="stack hide"></section>
 
 <!-- 報告者頁 -->
 <section id="v-class" class="stack hide">
   <p class="eyebrow">報告者用</p>
-  <h2>全班統計</h2>
-  <p>請同學作答完後，依結果頁最上方的「結果代碼」用 Slido 匿名投票，把票數填進下面，長條圖會即時更新，可投影給全班看。</p>
+  <h2>全班即時統計</h2>
+  <p>同學做完問卷會自動匿名送出結果，這頁每 5 秒更新一次。正式開始作答前，先按「從現在開始計算」，預演時的測試資料就不會算進去。</p>
+  <div class="row"><button class="btn" id="l-start">從現在開始計算</button><button class="btn ghost" id="l-reveal">揭曉實際結果</button><button class="btn ghost" id="l-all">顯示全部資料</button></div>
+  <p class="live-n" id="l-n">讀取中…</p><p class="small" id="l-err"></p>
+  <div class="grid2">
+    <div class="card stack"><h3>大家猜：班上最多哪一型？</h3><div class="bars" id="l-guess"></div></div>
+    <div class="card stack"><h3>實際：孝道類型分布</h3><div class="bars" id="l-type"></div></div>
+    <div class="card stack"><h3>衝突中的情緒調控策略</h3><div class="bars" id="l-strat"></div></div>
+    <div class="card stack"><h3>代間矛盾程度</h3><div class="bars" id="l-amb"></div></div>
+  </div>
+  <details class="card"><summary>手動輸入（網路出問題時的備案）</summary>
   <div class="grid2">
     <div class="card stack">
       <h3>孝道類型</h3>
@@ -109,7 +127,7 @@ nav.top a{color:var(--muted)}
       <div class="cnt" id="c-strat"></div>
       <div class="bars" id="b-strat"></div>
     </div>
-  </div>
+  </div></details>
   <div class="card stack">
     <h3>帶領討論的提問</h3>
     <ul>
@@ -132,11 +150,11 @@ var Q=[
  // 第一部分：雙元孝道量表 16 題（Yeh & Bedford, 2003；中文題目依李啟明等 2016 刊載版本，作答方式依原量表「重要程度」）
  {p:1,k:"r",t:"多留心父母親的身體健康。"},
  {p:1,k:"a",t:"當自己與父母親意見不合時，要順從父母親的意見。"},
- {p:1,k:"r",t:"多與父母親交談，以瞭解他們的想法和感受。"},
- {p:1,k:"a",t:"結婚前，要將所賺的錢全部交給父母親處理。"},
+ {p:1,k:"r",t:"多與父母親交談，以了解他們的想法和感受。"},
+ {p:1,k:"a",t:"結婚前，要將所賺的錢全部交給父母處理。"},
  {p:1,k:"r",t:"多留心父母親的生活起居。"},
- {p:1,k:"a",t:"為了順從父母親，可以不守對朋友的諾言。"},
- {p:1,k:"r",t:"常關懷父母親，瞭解父母親。"},
+ {p:1,k:"a",t:"為了順從父母親，可以不守對朋友的承諾。"},
+ {p:1,k:"r",t:"常關懷父母親，了解父母親。"},
  {p:1,k:"a",t:"放棄個人的志向，達成父母親的心願。"},
  {p:1,k:"r",t:"奉養父母親使他們的生活更為舒適。"},
  {p:1,k:"a",t:"無論父母親交代什麼事，都立刻去做。"},
@@ -205,7 +223,7 @@ var STRAT={
 };
 var ans=new Array(Q.length).fill(0), cur=0;
 var $=function(id){return document.getElementById(id)};
-function show(v){["v-start","v-q","v-r","v-class"].forEach(function(id){$(id).classList.toggle("hide",id!==v)});window.scrollTo(0,0)}
+function show(v){["v-start","v-q","v-g","v-r","v-class"].forEach(function(id){$(id).classList.toggle("hide",id!==v)});window.scrollTo(0,0)}
 function renderQ(){
  var q=Q[cur];
  $("q-part").textContent=PART[q.p].split("｜")[0];
@@ -219,7 +237,7 @@ function renderQ(){
   var b=document.createElement("button");b.className="opt"+(ans[cur]===i+1?" sel":"");b.type="button";
   b.innerHTML='<span class="n">'+(i+1)+'</span><span>'+s+'</span>';
   b.onclick=function(){ans[cur]=i+1;Array.prototype.forEach.call(o.children,function(c){c.classList.remove("sel")});b.classList.add("sel");
-   setTimeout(function(){if(cur<Q.length-1){cur++;renderQ();}else{results();}},180)};
+   setTimeout(function(){if(cur<Q.length-1){cur++;renderQ();}else{show("v-g");}},180)};
   o.appendChild(b)});
  $("back").style.visibility=cur===0?"hidden":"visible";
 }
@@ -256,7 +274,7 @@ function results(){
   "高":"你正經歷明顯的拉扯，這其實很普遍。研究發現，親子雙方的矛盾感越高，心理福祉可能越受影響（Fingerman 等，2008）。找信任的朋友聊聊，或使用學校諮商中心的資源，都是照顧自己的方式。"}[ambLv];
  var h='';
  h+='<p class="eyebrow">你的結果</p><h1>'+T.name+'｜'+stratName+'</h1>';
- h+='<div class="code"><span>結果代碼（報告時依此匿名投票）</span>'+T.name+'　・　'+stratName+'</div>';
+ h+='<div class="code"><span>結果代碼</span>'+T.name+'　・　'+stratName+'</div>';
  // part 1
  h+='<div class="card stack"><p class="eyebrow">第一部分｜雙元孝道</p><h2>你是「'+T.name+'」</h2><p class="small">'+T.sub+'</p>';
  h+='<div class="bars">'+bar("相互性孝道",A,6,"#2F6F6A")+bar("權威性孝道",B,6,"#A9472A")+'</div><p class="small"><b>切截分數</b>：兩者都是 8 題的平均分數（1＝極不重要，6＝極重要）；平均 3.5 分以上算「高」，未滿 3.5 算「低」。3.5 是 1–6 量尺的中點，代表整體偏向「重要」。這是為了即時給個人回饋而採用的理論切點，不是常模；正式研究多依樣本的分數分布（例如中位數）切分，所以同一個分數在不同研究中可能被歸為不同類型。</p>';
@@ -279,9 +297,45 @@ function results(){
  h+='<div class="card stack"><h3>提醒</h3><p class="small">第一部分採用已發表的雙元孝道量表全部 16 題與原作答方式；第三、四部分各只用原研究的 3 題，不是完整量表，分數只能粗略參考；第二部分是依 Bengtson 理論自編的教學題目，沒有經過信效度驗證。結果只是幫你認識自己的一個角度。家庭的樣子有很多種，沒有哪一型比較好。若家庭議題讓你感到困擾，可以聯絡學校的諮商中心。</p></div>';
  h+='<div class="row"><button class="btn ghost" id="again">重新作答</button></div>';
  $("v-r").innerHTML=h;show("v-r");
- $("again").onclick=function(){ans=new Array(Q.length).fill(0);cur=0;show("v-start")};
+ send({type:t,strategy:tops.join("+"),amb:ambLv,guess:GUESS});
+ $("again").onclick=function(){ans=new Array(Q.length).fill(0);cur=0;GUESS="";show("v-start")};
 }
-// 報告者頁
+// 匿名送出
+var API="https://script.google.com/macros/s/AKfycbyi6AvibQDtLoN8qOVkJH1bgTuHb7cGKPdPcWWlVCZ0m0rKb0wQJebVWRUbKlZ7Bd4c/exec";
+var GUESS="";
+(function(){var g=$("guess");[["mutual","愛爸媽，但重大決定想自己做主"],["absolute","感情深，也重視服從與家族期待"],["authority","重視責任和規矩，但較少聊心事"],["low","和家人較疏遠，或正在練習獨立"]].forEach(function(x){var b=document.createElement("button");b.type="button";b.className="gopt";b.innerHTML="<b>"+TYPES[x[0]].name+"</b><span>"+x[1]+"</span>";b.onclick=function(){GUESS=x[0];results()};g.appendChild(b)});$("g-skip").onclick=function(){GUESS="";results()}})();
+function send(d){
+ try{var last=+localStorage.getItem("fq_sent")||0;if(Date.now()-last<3*3600*1000)return;localStorage.setItem("fq_sent",Date.now())}catch(e){}
+ try{fetch(API,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(d)})}catch(e){}
+}
+// 報告者頁：即時統計
+var START=0;try{START=+localStorage.getItem("fq_start")||0}catch(e){}
+var REVEAL=false;
+function liveDraw(rows){
+ rows=rows.filter(function(r){return r.t>=START});
+ var n=rows.length,gn=rows.filter(function(r){return r.guess}).length;
+ $("l-n").textContent="目前已收到 "+n+" 份"+(START?"（自 "+new Date(START).toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit"})+" 起）":"（全部資料）");
+ function cnt(keys,f){var o={};keys.forEach(function(k){o[k]=0});rows.forEach(function(r){f(r).forEach(function(k){if(k in o)o[k]++})});return o}
+ function bars(o,keys,meta){var m=Math.max(1,Math.max.apply(null,keys.map(function(k){return o[k]})));return keys.map(function(k){return bar(meta[k].name,o[k],m,meta[k].color)}).join("")}
+ var g=cnt(TK,function(r){return r.guess?[r.guess]:[]}),a=cnt(TK,function(r){return [r.type]});
+ $("l-guess").innerHTML=bars(g,TK,TYPES)+'<p class="small">共 '+gn+' 人猜測</p>';
+ $("l-type").innerHTML=REVEAL?bars(a,TK,TYPES):'<p class="small">按「揭曉實際結果」後顯示</p>';
+ var st=cnt(SK,function(r){return String(r.strategy).split("+")});
+ $("l-strat").innerHTML=bars(st,SK,STRAT)+'<p class="small">同分者各計一次</p>';
+ var AL={"低":{name:"低",color:"#2F6F6A"},"中":{name:"中",color:"#C08A3E"},"高":{name:"高",color:"#A9472A"}};
+ $("l-amb").innerHTML=bars(cnt(["低","中","高"],function(r){return [r.amb]}),["低","中","高"],AL);
+}
+var CACHE=[];
+function poll(){
+ if($("v-class").classList.contains("hide"))return;
+ fetch(API+"?t="+Date.now()).then(function(r){return r.json()}).then(function(rows){CACHE=rows;liveDraw(rows);$("l-err").textContent=""})
+ .catch(function(){$("l-err").textContent="暫時讀不到資料，會自動重試；若一直失敗，可用下方「手動輸入」備案。"});
+}
+setInterval(poll,5000);
+$("l-start").onclick=function(){START=Date.now();try{localStorage.setItem("fq_start",START)}catch(e){};REVEAL=false;liveDraw(CACHE)};
+$("l-all").onclick=function(){START=0;try{localStorage.removeItem("fq_start")}catch(e){};liveDraw(CACHE)};
+$("l-reveal").onclick=function(){REVEAL=!REVEAL;this.textContent=REVEAL?"隱藏實際結果":"揭曉實際結果";liveDraw(CACHE)};
+// 報告者頁：手動備案
 var TK=["mutual","absolute","authority","low"],SK=["sup","rea","exp"];
 var cnt={};
 function counters(){
@@ -306,7 +360,7 @@ function allResults(){
  $("all").innerHTML=h;
 }
 counters();allResults();
-function route(){if(location.hash==="#class"){show("v-class")}else if(!$("v-class").classList.contains("hide")){show("v-start")}}
+function route(){if(location.hash==="#class"){show("v-class");poll()}else if(!$("v-class").classList.contains("hide")){show("v-start")}}
 window.addEventListener("hashchange",route);route();
 })();
 </script>
